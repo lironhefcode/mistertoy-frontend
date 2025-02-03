@@ -1,0 +1,7 @@
+.app-header{
+    grid-column: 1/-1;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
