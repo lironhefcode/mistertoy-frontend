@@ -19,11 +19,12 @@ export function ToyDetails() {
     }
     if (!toy) return <div>Loading...</div>
     return (
-        <section className="toy-detarils">
+        <section className="toy-details">
             <h2>{toy.name}</h2>
             <p>Price: <span>${toy.price.toLocaleString()}</span></p>
-            <p>Instock: <span>${toy.inStock? 'yes':'no'}</span></p>
-            <ul>
+            <p>Instock: <span>{toy.inStock? 'yes':'no'}</span></p>
+            <h2>labels</h2>
+            <ul className="label-list clean-list">
                 {toy.labels.map(label =>
                      <li key={label}>{label}</li>
                 )}

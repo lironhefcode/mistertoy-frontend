@@ -26,25 +26,30 @@ export function ToyFilter({ filterBy, onSetFilter }) {
 
     return (
         <>
-            <section>
+            <section className="toy-filter">
                 <h2>Toy filter</h2>
                 <form action="">
-                    <label htmlFor="txt"></label>
-                    <input type="text" onChange={handleChange} name="txt" id="txt" />
+                    <div>
+                        <label htmlFor="txt">byText:</label>
+                        <input type="text" onChange={handleChange} name="txt" id="txt" />
+                    </div>
+                    <div>
+                        <label htmlFor="inStock">stock Type</label>
+                        <select onChange={handleChange} name="inStock" id="inStock">
+                            <option value="all">all</option>
+                            <option value="true">In stock</option>
+                            <option value="false">Out of stock</option>
+                        </select>
+                    </div>
+                    <div>
 
-                    <label htmlFor="inStock">stock Type</label>
-                    <select onChange={handleChange} name="inStock" id="inStock">
-                        <option value="all">all</option>
-                        <option value="true">In stock</option>
-                        <option value="false">Out of stock</option>
-                    </select>
-
-                    <label htmlFor="sortBy">sortBy</label>
-                    <select onChange={handleChange} name="sortBy" id="sortBy">
-                        <option value="name">name</option>
-                        <option value="price">price</option>
-                        <option value="created">Created</option>
-                    </select>
+                        <label htmlFor="sortBy">sortBy</label>
+                        <select onChange={handleChange} name="sortBy" id="sortBy">
+                            <option value="name">name</option>
+                            <option value="price">price</option>
+                            <option value="created">Created</option>
+                        </select>
+                    </div>
                 </form>
             </section>
         </>

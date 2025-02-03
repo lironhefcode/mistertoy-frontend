@@ -1,2 +1,12 @@
 @import './cmps/header.css';
-@import './base/layout.css'
+@import './cmps/toypreview.css';
+@import './cmps/toylist.css';
+@import './cmps/toyfilter.css';
+@import './cmps/toydetails.css';
+@import './cmps/toyedit.css';
+
+
+
+
+@import './base/layout.css';
+@import './base/helpers.css';

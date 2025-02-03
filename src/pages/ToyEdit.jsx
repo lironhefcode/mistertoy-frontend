@@ -6,52 +6,57 @@ import { saveToy } from "../store/actions/toy.action.js";
 
 
 
-export function ToyEdit(){
+export function ToyEdit() {
     const navigate = useNavigate()
-const [ToyToEdit,setToyToEdit] = useState(toyService.getEmptyToy())
-const {toyId} = useParams()
-    useEffect(() =>{
+    const [ToyToEdit, setToyToEdit] = useState(toyService.getEmptyToy())
+    const { toyId } = useParams()
+    useEffect(() => {
         if (toyId) loadToy()
-    },[])
+    }, [])
 
     function loadToy() {
-            toyService.getById(toyId)
-                .then(toy => setToyToEdit(toy))
-                .catch(err => console.log('Had issues in toy details', err))
-        }
-    function handleChange({target}){
+        toyService.getById(toyId)
+            .then(toy => setToyToEdit(toy))
+            .catch(err => console.log('Had issues in toy details', err))
+    }
+    function handleChange({ target }) {
         let { value, type, name: field } = target
-        switch(type){
+        switch (type) {
             case 'number':
                 value = +value
             case 'checkbox':
-                value = (value==='checked')
+                value = (value === 'checked')
         }
-        setToyToEdit(prevToy => ({...prevToy,[field]:value}))
+        setToyToEdit(prevToy => ({ ...prevToy, [field]: value }))
     }
 
-    function onSaveToy(ev){
+    function onSaveToy(ev) {
         ev.preventDefault()
-        saveToy(ToyToEdit).then(()=>
+        saveToy(ToyToEdit).then(() =>
             navigate('/toys')
         )
     }
 
-    return(
+    return (
         <>
-        <section className="toy-edit">
-            <form action="" onSubmit={onSaveToy}>
-                <label htmlFor="name"></label>
-                <input type="text" onChange={handleChange} name="name" id="name" value={ToyToEdit.name} />
-
-                <label htmlFor="price"></label>
-                <input type="number" name="price" onChange={handleChange} id="price" value={ToyToEdit.price} />
-                
-                <label htmlFor="inStock"></label>
-                <input type="checkbox" name="inStock" onChange={handleChange} id="inStock" checked={(ToyToEdit.instock)} />
-                <button type="submit">Save</button>
-            </form>
-        </section>
+            <section className="toy-edit">
+                <h2 className="title">Toy edit</h2>
+                <form action="" onSubmit={onSaveToy}>
+                    <div>
+                        <label htmlFor="name">name:</label>
+                        <input type="text" onChange={handleChange} name="name" id="name" value={ToyToEdit.name} />
+                    </div>
+                    <div>
+                        <label htmlFor="price">price:</label>
+                        <input type="number" name="price" onChange={handleChange} id="price" value={ToyToEdit.price} />
+                    </div>
+                    <div>
+                        <label htmlFor="inStock">is in stock:</label>
+                        <input type="checkbox" name="inStock" onChange={handleChange} id="inStock" checked={(ToyToEdit.instock)} />
+                    </div>
+                    <button className="btn" type="submit">Save</button>
+                </form>
+            </section>
         </>
     )
 }

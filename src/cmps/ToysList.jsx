@@ -8,7 +8,7 @@ export function ToysList({toys}){
         
            <ul className="toy-list">
             {toys.map(toy =>
-                <li className="toy-preview" key={toy._id}>
+                <li className=" clean-list" key={toy._id}>
                     <ToyPreview toy={toy} />
 
                     {/* <div>
