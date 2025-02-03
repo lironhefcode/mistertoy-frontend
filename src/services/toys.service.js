@@ -1,9 +1,9 @@
 import { storageService } from './async-storage.service.js'
 import { utilService } from './util.service.js'
-
+import { httpService } from './http.service.js'
 
 const STORAGE_KEY = 'toyDB'
-
+const BASE_URL = 'toy/'
 export const toyService = {
     query,
     getById,
@@ -15,45 +15,27 @@ export const toyService = {
 }
 
 function query(filterBy = {}) {
-    console.log(filterBy)
-    return storageService.query(STORAGE_KEY)
-        .then(toys => {
-            if (!filterBy.txt) filterBy.txt = ''
-            
-      
-            const regExp = new RegExp(filterBy.txt, 'i')
-            toys = toys.filter(toy =>
-                regExp.test(toy.name) && (filterBy.inStock === 'all' || filterBy.inStock === toy.inStock) )
-            if(filterBy.sortBy === 'name'){
-                toys = toys.sort((t1, t2) => t1.name.localeCompare(t2.name))
+    return httpService.get(BASE_URL, filterBy)
 
-            }else if(filterBy.sortBy === 'price'){
-                toys = toys.sort((t1, t2) => t1.price - t2.price)
-
-            }else{
-                toys = toys.sort((t1, t2) => t1.createdAt - t2.createdAt)
-            }
-            return toys
-        })
 }
 
 function getById(toyId) {
-    return storageService.get(STORAGE_KEY, toyId)
+    return httpService.get(BASE_URL+toyId)
 }
 
 function remove(toyId) {
     // return Promise.reject('Not now!')
-    return storageService.remove(STORAGE_KEY, toyId)
+    return httpService.remove(BASE_URL+toyId)
 }
 
 
 function save(toy) {
     if (toy._id) {
-        return storageService.put(STORAGE_KEY, toy)
+        return httpService.put(BASE_URL +toy._id,toy)
     } else {
         // when switching to backend - remove the next line
-        toy.owner = userService.getLoggedinUser()
-        return storageService.post(STORAGE_KEY, toy)
+        
+        return httpService.post(BASE_URL, toy)
     }
 }
 
