@@ -19,3 +19,8 @@
     align-items: center;
     gap: 10px;
 }
+.openChat{
+    position: fixed;
+    bottom: 10px;
+    right: 30px;
+}

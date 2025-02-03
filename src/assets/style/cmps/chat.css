@@ -1,0 +1,11 @@
+.chat form{
+   position: relative;
+   bottom: 0;
+}
+.chat{
+   position: relative;
+    
+}
+.chat .messages{
+    min-height: 100px;
+}

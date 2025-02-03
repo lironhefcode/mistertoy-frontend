@@ -4,8 +4,8 @@
 @import './cmps/toyfilter.css';
 @import './cmps/toydetails.css';
 @import './cmps/toyedit.css';
-
-
+@import './cmps/chat.css';
+@import './cmps/popup.css';
 
 
 @import './base/layout.css';
