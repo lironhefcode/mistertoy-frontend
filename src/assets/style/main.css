@@ -1,5 +1,6 @@
 
 @import './setup/vars.css';
+@import './setup/mq.css';
 
 @import './cmps/header.css';
 @import './cmps/toypreview.css';
@@ -13,6 +14,9 @@
 @import './cmps/toyindex.css';
 @import './cmps/usermsg.css';
 @import './cmps/pagintationbtn.css';
+
+
+
 
 @import './base/layout.css';
 @import './base/helpers.css';

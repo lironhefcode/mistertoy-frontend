@@ -28,16 +28,18 @@ export function ToyDetails() {
 
     if (!toy) return <div>Loading...</div>
 
-  
+  const labelTxt = toy.labels.join(',')
     return (
         <section className="toy-details">
-            <h2>{toy.name}</h2>
+            <h2 className="title">{toy.name}</h2>
+            <div className="toy-details-container">
             <ToyImg toyName={toy.name} />
-            <p>Price: <span>${toy.price.toLocaleString()}</span></p>
-            <p>Instock: <span>{toy.inStock? 'yes':'no'}</span></p>
-            <div>labels: {toy.labels.map(label =><span key={label}>{label} </span>)}</div>
-           
-               
+            <div className="toy-info">
+            <p> <span>Price:</span>  ${toy.price.toLocaleString()}</p>
+            <p><span> Instock:</span> {toy.inStock? 'yes':'no'}</p>
+            <div> <span>labels:</span> {labelTxt}</div>
+            </div>
+            </div>
           
             <button className="openChat" onClick={onSetPopup}>
                 <img  src={chatImg} alt="" />
