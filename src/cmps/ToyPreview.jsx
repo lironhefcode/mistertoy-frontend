@@ -1,20 +1,18 @@
-import { Link } from "react-router-dom"
-
+import { Link, useNavigate } from "react-router-dom"
+import { Navigate } from "react-router-dom"
+import { ToyImg } from "./ToyImg"
 
 
 export function ToyPreview({ toy }) {
-
+    const navigate = useNavigate()
     return (
-        <article className="toy-preview">
-            <h4>{toy.name}</h4>
-            <p>Price: <span>${toy.price.toLocaleString()}</span></p>
-            <p>Instock: <span>{toy.inStock ? 'yes' : 'no'}</span></p>
-            <button className="btn">
-                <Link to={`/toys/${toy._id}`}>Details</Link>
-            </button>
-            <button className="btn">
-                <Link to={`/toys/edit/${toy._id}`}>Edit</Link>
-            </button>
-        </article>
+        <Link to={`/toys/${toy._id}`}>
+            <article onClick={() => navigate(`/toys/${toy._id}`)} className="toy-preview">
+                <h4>{toy.name}</h4>
+                <ToyImg toyName={toy.name} />
+                <p>Price: <span>${toy.price.toLocaleString()}</span></p>
+                <p>Instock: <span>{toy.inStock ? 'yes' : 'no'}</span></p>
+            </article>
+        </Link>
     )
 }

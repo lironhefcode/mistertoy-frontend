@@ -4,6 +4,16 @@ import { httpService } from './http.service.js'
 
 const STORAGE_KEY = 'toyDB'
 const BASE_URL = 'toy/'
+const labels = [
+    'On wheels',
+    'Box game',
+    'Art',
+    'Baby',
+    'Doll',
+    'Puzzle',
+    'Outdoor',
+    'Battery Powered',
+  ]
 export const toyService = {
     query,
     getById,
@@ -11,7 +21,8 @@ export const toyService = {
     remove,
     getRandomCar,
     getDefaultFilter,
-    getEmptyToy
+    getEmptyToy,
+    getToyLabels
 }
 
 function query(filterBy = {}) {
@@ -25,7 +36,7 @@ function getById(toyId) {
 
 function remove(toyId) {
     // return Promise.reject('Not now!')
-    return httpService.remove(BASE_URL+toyId)
+    return httpService.delete(BASE_URL+toyId)
 }
 
 
@@ -42,8 +53,9 @@ function save(toy) {
 function getEmptyToy() {
     return {
         name: '',
-        price: '',
-        inStock:true
+        price: 0,
+        inStock:true,
+        labels:[],
     }
 }
 
@@ -56,5 +68,8 @@ function getRandomCar() {
 }
 
 function getDefaultFilter() {
-    return { txt: '', inStock: 'all', sortBy:'name' }
+    return { txt: '',labels: [], inStock: 'all', sortBy:'name',pageIdx:0 }
+}
+function getToyLabels() {
+    return [...labels]
 }

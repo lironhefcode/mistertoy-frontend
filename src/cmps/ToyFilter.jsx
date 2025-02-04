@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react"
 import { utilService } from "../services/util.service.js"
+import { toyService } from "../services/toys.service.js"
 
 
-
+const toyLabels = toyService.getToyLabels()
 export function ToyFilter({ filterBy, onSetFilter }) {
 
     const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
@@ -13,17 +14,17 @@ export function ToyFilter({ filterBy, onSetFilter }) {
     }, [filterByToEdit])
     function handleChange({ target }) {
         let { value, name: field, type } = target
-        console.log(type)
+   
         switch (type) {
             case 'number':
                 value = +value
-            case 'select-one':
-                if (value === 'true') value = true
-                if (value === 'false') value = false
+            case 'select-multiple':
+                value = Array.from(target.selectedOptions, option => option.value || [])
         }
         setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
     }
-
+    
+    const {labels} = filterByToEdit
     return (
         <>
             <section className="toy-filter">
@@ -41,8 +42,23 @@ export function ToyFilter({ filterBy, onSetFilter }) {
                             <option value="false">Out of stock</option>
                         </select>
                     </div>
-                    <div>
 
+                    <select
+                        multiple
+                        name="labels"
+                        value={labels || []}
+                        onChange={handleChange}
+                    >
+                        <option value="">Labels</option>
+                        <>
+                            {toyLabels.map(label => (
+                                <option key={label} value={label}>
+                                    {label}
+                                </option>
+                            ))}
+                        </>
+                    </select>
+                    <div>
                         <label htmlFor="sortBy">sortBy</label>
                         <select onChange={handleChange} name="sortBy" id="sortBy">
                             <option value="name">name</option>

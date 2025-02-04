@@ -5,14 +5,20 @@
     justify-content: space-between;
     width: 100%;
     box-shadow: 0px 4px 5px hsl(0, 0%, 90%);
+    align-items: center;
+        
 }
 .header-nav-list li{
     width: 80px;
     height: 80px;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 .header-nav-list li a {
     text-decoration: none;
     color: inherit;
+}
+.header-nav-list li.active{
+    border-bottom: 6px solid var(--main-clr-1);
 }

@@ -1,16 +1,16 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
 import './App.css'
 import { Route, BrowserRouter as Router, Routes } from 'react-router'
 import { Home } from './pages/Home.jsx'
 import { ToyesIndex } from './pages/Toyesindex.jsx'
-import { Header } from './cmps/header.jsx'
+import { Header } from './cmps/Header.jsx'
 import './assets/style/main.css'
 import { Provider } from 'react-redux'
 import { store } from './store/store.js'
 import { ToyDetails } from './pages/ToyDetails.jsx'
 import { ToyEdit } from './pages/ToyEdit.jsx'
+import { UserMsg } from './cmps/UserMsg.jsx'
 function App() {
 
 
@@ -26,10 +26,12 @@ function App() {
               <Route path='/toys' element={<ToyesIndex />}></Route>
               <Route path='/toys/:toyId' element={<ToyDetails/>}></Route>
               <Route path='/toys/edit/:toyId?' element={<ToyEdit/>}></Route>
+              <Route path='/toys/edit' element={<ToyEdit/>}></Route>
             </Routes>
           </div>
         </section>
       </Router>
+      <UserMsg/>
       </Provider>
     </>
   )

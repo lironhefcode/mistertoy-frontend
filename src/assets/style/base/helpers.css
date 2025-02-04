@@ -35,8 +35,9 @@
 }
 
 .btn{
-    background-color: rgb(225, 225, 105);
-    border-radius: 20px;
+    background-color: var(--main-clr-1);
+    color: white;
+    border-radius: 10px;
     margin-left: 10px;
     margin-bottom: 4px;
     border: 0;

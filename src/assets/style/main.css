@@ -1,3 +1,6 @@
+
+@import './setup/vars.css';
+
 @import './cmps/header.css';
 @import './cmps/toypreview.css';
 @import './cmps/toylist.css';
@@ -6,7 +9,11 @@
 @import './cmps/toyedit.css';
 @import './cmps/chat.css';
 @import './cmps/popup.css';
-
+@import './cmps/logo.css';
+@import './cmps/toyindex.css';
+@import './cmps/usermsg.css';
+@import './cmps/pagintationbtn.css';
 
 @import './base/layout.css';
 @import './base/helpers.css';
+@import './base/base.css';

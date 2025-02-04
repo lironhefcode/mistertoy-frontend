@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgb(137, 137, 137);
+    background-color: var(--main-clr-1);
     border-radius: 10px;
 }
 .toy-filter form{

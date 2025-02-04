@@ -17,7 +17,25 @@
 .toy-edit form input,button{
     width: fit-content;
 }
-.toy-edit form label{
 
-   margin-right: 5px;
+.labels-container{
+    width: 20vw;
+}
+.toy-edit .labels-container input[type="checkbox"]{
+    width: 0;
+        padding: 0;
+        margin: 0;
+}
+.toy-edit .labels-container input[type="checkbox"]:checked + .edit-tag{
+
+    background-color: var(--main-clr-1);
+    color: white;
+}
+.edit-tag{
+   margin-inline: 5px;
+   padding-inline: 5px;
+
+}
+.toy-edit .labels-container legend{
+    font-weight: bold;
 }

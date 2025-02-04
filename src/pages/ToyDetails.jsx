@@ -4,7 +4,8 @@ import { toyService } from "../services/toys.service.js"
 import { useEffect } from "react"
 import { Popup } from "../cmps/Popup.jsx"
 import { Chat } from "../cmps/chat.jsx"
-
+import { ToyImg } from "../cmps/ToyImg.jsx"
+import chatImg from '../assets/style/imgs/chat.png'
 
 
 export function ToyDetails() {
@@ -27,19 +28,20 @@ export function ToyDetails() {
 
     if (!toy) return <div>Loading...</div>
 
-
+  
     return (
         <section className="toy-details">
             <h2>{toy.name}</h2>
+            <ToyImg toyName={toy.name} />
             <p>Price: <span>${toy.price.toLocaleString()}</span></p>
             <p>Instock: <span>{toy.inStock? 'yes':'no'}</span></p>
-            <h2>labels</h2>
-            <ul className="label-list clean-list">
-                {toy.labels.map(label =>
-                     <li key={label}>{label}</li>
-                )}
-            </ul>
-            <button className="openChat" onClick={onSetPopup}>popUp</button>
+            <div>labels: {toy.labels.map(label =><span key={label}>{label} </span>)}</div>
+           
+               
+          
+            <button className="openChat" onClick={onSetPopup}>
+                <img  src={chatImg} alt="" />
+            </button>
             {popUp&&<Popup onSetPopup={onSetPopup} header="Chat with Us" footer="We are here to help!">
                 <Chat/>
                 </Popup>}
