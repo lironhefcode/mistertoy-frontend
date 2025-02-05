@@ -79,14 +79,14 @@ export function ToyEdit() {
                             <div>
                                 {console.log(values)}
                                 <label htmlFor="name">name:</label>
-                                <Field type="text" name="name" id="name" />
+                                <Field className="name" type="text" name="name" id="name" />
                                 {errors.name && touched.name ? (
                                     <div>{errors.name}</div>
                                 ) : null}
                             </div>
                             <div>
                                 <label htmlFor="price">price:</label>
-                                <Field type="number" name="price" id="price" />
+                                <Field className="price" type="number" name="price" id="price" />
                                 {errors.price && touched.price ? (
                                     <div>{errors.price}</div>
                                 ) : null}

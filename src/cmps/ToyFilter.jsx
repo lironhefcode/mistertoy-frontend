@@ -48,25 +48,19 @@ export function ToyFilter({ filterBy, onSetFilter }) {
                             <option value="false">Out of stock</option>
                         </select>
                     </div>
-
+                    <FormControl  sx={{ m: 2, width: 300, bgcolor: 'white' }}>
+                    <InputLabel color="black" id="demo-multiple-name-label">labels</InputLabel>
                     <Select
-                        sx={{ m: 1, width: 300, bgcolor: 'white' }}
+                       
                         labelId="demo-multiple-name-label"
                         id="demo-multiple-name"
                         multiple
                         value={labels || []}
                         onChange={handleChange}
-                        input={<OutlinedInput label="Name" />}
+                        input={<OutlinedInput   label="Name" />}
                         name="labels"
                         displayEmpty
-                        renderValue={(selected) => {
-                            console.log(selected)
-                            if (!selected|| selected.length === 0) {
-                              return <em>enter labels</em>;
-                            }
-                
-                            return selected.join(', ');
-                          }}
+                       
                     >
                         
 
@@ -76,7 +70,7 @@ export function ToyFilter({ filterBy, onSetFilter }) {
                             </MenuItem>
                         ))}
                     </Select>
-
+                    </FormControl>
 
                     <div>
                         <label htmlFor="sortBy">sortBy</label>

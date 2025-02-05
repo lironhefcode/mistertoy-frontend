@@ -23,7 +23,9 @@ export const toyService = {
     getDefaultFilter,
     getEmptyToy,
     getToyLabels,
-    getToysData
+    getToysData,
+    getStockData,
+    getAll
 }
 
 function query(filterBy = {}) {
@@ -78,9 +80,8 @@ function getToyLabels() {
     return [...labels]
 }
 
-function getToysData(){
-  return getAll()
-        .then(toys => {
+function getToysData(toys){
+ 
                 return toys.reduce((acc,toy) =>{
                     toy.labels.forEach(label => {
                         acc[label] = (acc[label] || 0) + 1
@@ -89,5 +90,20 @@ function getToysData(){
                     return acc
             },{})
 
-            })
+            
+}
+function getStockData(toys){
+   
+                return toys.reduce((acc,toy) =>{
+                    if(!toy.inStock) return acc
+
+                    toy.labels.forEach(label => {
+                        acc[label] = (acc[label] || 0) + 1
+                    });
+        
+                    return acc
+            },{})
+
+          
+
 }

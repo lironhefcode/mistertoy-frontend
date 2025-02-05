@@ -4,6 +4,9 @@
     box-shadow: 0px 10px 16px hsl(0, 0%, 90%);
     padding: 10px;
     justify-content: center;
+    width: 80%;
+    justify-self: center;
+    margin-top: 10px;
     
 }
 .toy-edit form{
@@ -12,11 +15,10 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
+    margin-top: 10px;
     
 }
-.toy-edit form input,button{
-    width: fit-content;
-}
+
 
 .labels-container{
     width: 20vw;
@@ -24,6 +26,15 @@
    
     padding: 0;
     gap: 5px;
+}
+
+.toy-edit  .price,.name{
+    height: 4em;
+    min-width: 150px;
+    max-width: 20vw;
+    padding-left: 5px;
+    font-size: 1em;
+    margin-left: 5px;
 }
 
 .toy-edit .labels-container input[type="checkbox"]{
@@ -42,6 +53,7 @@
   text-align: center;
 
 }
-.toy-edit .labels-container legend{
+.toy-edit form label{
     font-weight: bold;
+    margin-right: 5px;
 }
