@@ -23,6 +23,7 @@ export const httpService = {
     delete(endpoint, data) {
         return ajax(endpoint, 'DELETE', data)
     }
+    
 }
 
 async function ajax(endpoint, method = 'GET', data = null) {

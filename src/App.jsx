@@ -11,6 +11,7 @@ import { store } from './store/store.js'
 import { ToyDetails } from './pages/ToyDetails.jsx'
 import { ToyEdit } from './pages/ToyEdit.jsx'
 import { UserMsg } from './cmps/UserMsg.jsx'
+import { Dashborad } from './pages/Dashboard.jsx'
 function App() {
 
 
@@ -27,6 +28,7 @@ function App() {
               <Route path='/toys/:toyId' element={<ToyDetails/>}></Route>
               <Route path='/toys/edit/:toyId?' element={<ToyEdit/>}></Route>
               <Route path='/toys/edit' element={<ToyEdit/>}></Route>
+              <Route path='/dashboard' element={<Dashborad/>}></Route>
             </Routes>
           </div>
         </section>

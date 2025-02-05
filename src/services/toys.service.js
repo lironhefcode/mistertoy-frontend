@@ -22,12 +22,16 @@ export const toyService = {
     getRandomCar,
     getDefaultFilter,
     getEmptyToy,
-    getToyLabels
+    getToyLabels,
+    getToysData
 }
 
 function query(filterBy = {}) {
     return httpService.get(BASE_URL, filterBy)
 
+}
+function getAll(){
+    return httpService.get(BASE_URL + 'all')
 }
 
 function getById(toyId) {
@@ -72,4 +76,18 @@ function getDefaultFilter() {
 }
 function getToyLabels() {
     return [...labels]
+}
+
+function getToysData(){
+  return getAll()
+        .then(toys => {
+                return toys.reduce((acc,toy) =>{
+                    toy.labels.forEach(label => {
+                        acc[label] = (acc[label] || 0) + 1
+                    });
+        
+                    return acc
+            },{})
+
+            })
 }

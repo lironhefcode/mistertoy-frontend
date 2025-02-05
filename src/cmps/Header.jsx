@@ -18,6 +18,7 @@ export function Header(){
         <ul className="header-nav-list clean-list flex   align-center">
             <li className={(page==='/')? 'active':''}><NavLink to='/'>Home</NavLink></li>
             <li className={(page==='/toys')? 'active':''}><NavLink to='/toys'>toys</NavLink></li>
+            <li className={(page==='/dashboard')? 'active':''}><NavLink to='/dashboard'>dashboard</NavLink></li>
         </ul>
         </nav>
         </div>
