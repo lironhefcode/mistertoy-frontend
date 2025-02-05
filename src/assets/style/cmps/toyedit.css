@@ -20,13 +20,18 @@
 
 .labels-container{
     width: 20vw;
+    display: grid;
+   
+    padding: 0;
+    gap: 5px;
 }
+
 .toy-edit .labels-container input[type="checkbox"]{
     width: 0;
         padding: 0;
         margin: 0;
 }
-.toy-edit .labels-container input[type="checkbox"]:checked + .edit-tag{
+.toy-edit .labels-container label:has([type="checkbox"]:checked).edit-tag{
 
     background-color: var(--main-clr-1);
     color: white;
@@ -34,6 +39,7 @@
 .edit-tag{
    margin-inline: 5px;
    padding-inline: 5px;
+  text-align: center;
 
 }
 .toy-edit .labels-container legend{

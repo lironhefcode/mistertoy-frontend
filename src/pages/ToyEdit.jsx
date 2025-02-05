@@ -3,9 +3,20 @@ import { Navigate, useNavigate, useParams } from "react-router";
 import { toyService } from "../services/toys.service.js";
 import { saveToy } from "../store/actions/toy.action.js";
 import { showSuccessMsg } from "../services/event-bus.service.js";
+import { Formik, Form, Field } from 'formik';
+import * as Yup from 'yup';
 
+const EditSchema = Yup.object().shape({
+    name: Yup.string()
+        .min(2, 'Too Short!')
+        .max(50, 'Too Long!')
+        .required('Required'),
+    price: Yup.number()
+        .min(1, 'to low!')
+        .max(500, 'Too high!')
+        .required('Required'),
 
-
+});
 
 export function ToyEdit() {
     const navigate = useNavigate()
@@ -34,61 +45,79 @@ export function ToyEdit() {
         settoyToEdit(prevToy => ({ ...prevToy, [field]: value }))
     }
 
-    function handleLabelChange({ target }) {
-        const value = target.value
-        settoyToEdit(prevToy => {
-          const newLabels = prevToy.labels.includes(value)
-            ? prevToy.labels.filter(label => label !== value)
-            : [...prevToy.labels, value]
-          return { ...prevToy, labels: newLabels }
-        })
-      }
+    function handleLabelChange({ target }, setFieldValue) {
+        const value = target.value;
 
-    function onSaveToy(ev) {
-        ev.preventDefault()
-        saveToy(toyToEdit).then(() =>{
+
+        setFieldValue("labels", prevLabels => {
+            const newLabels = prevLabels.includes(value)
+                ? prevLabels.filter(label => label !== value)
+                : [...prevLabels, value];
+            debugger
+
+            return newLabels;
+        });
+    }
+
+    function onSaveToy(values) {
+        
+        saveToy(values).then(() => {
             showSuccessMsg('saved toy succsefuly')
             navigate('/toys')
         }
         )
     }
-    const {  labels: selectedLabels } = toyToEdit
+    console.log(toyToEdit)
     return (
         <>
             <section className="toy-edit">
                 <h2 className="title">Toy edit</h2>
-                <form action="" onSubmit={onSaveToy}>
-                    <div>
-                        <label htmlFor="name">name:</label>
-                        <input type="text" onChange={handleChange} name="name" id="name" value={toyToEdit.name} />
-                    </div>
-                    <div>
-                        <label htmlFor="price">price:</label>
-                        <input type="number" name="price" onChange={handleChange} id="price" value={toyToEdit.price||''} />
-                    </div>
-                    <div>
-                        <label htmlFor="inStock">is in stock:</label>
-                        <input type="checkbox" name="inStock" onChange={handleChange} id="inStock" checked={(toyToEdit.inStock)} />
-                    </div>
-                    
-                
-                    <fieldset className="labels-container">
-                        <legend>labels</legend>
-                        {labels.map(label => (
-                            <>
-                                <input
-                                    type="checkbox"
-                                    id={label}
-                                    value={label}
-                                    checked={selectedLabels.includes(label)}
-                                    onChange={handleLabelChange}
-                                />
-                                <label className="edit-tag" htmlFor={label}>{label}</label>
-                            </>
-                        ))}
-                    </fieldset>
-                    <button className="btn" type="submit">Save</button>
-                </form>
+                <Formik enableReinitialize={true} initialValues={{ ...toyToEdit }} validationSchema={EditSchema} onSubmit={values => onSaveToy(values)}>
+                    {({ errors, touched, setFieldValue, values }) => (
+                       
+                        <Form>
+                            <div>
+                                {console.log(values)}
+                                <label htmlFor="name">name:</label>
+                                <Field type="text" name="name" id="name" />
+                                {errors.name && touched.name ? (
+                                    <div>{errors.name}</div>
+                                ) : null}
+                            </div>
+                            <div>
+                                <label htmlFor="price">price:</label>
+                                <Field type="number" name="price" id="price" />
+                                {errors.price && touched.price ? (
+                                    <div>{errors.price}</div>
+                                ) : null}
+                            </div>
+                            <div>
+                                <label htmlFor="inStock">is in stock:</label>
+                                <Field type="checkbox" name="inStock" id="inStock" />
+                            </div>
+
+
+                            <fieldset role="group" aria-labelledby="checkbox-group" className="labels-container">
+
+                                {labels.map(label => (
+
+
+                                    <label className="edit-tag"  key={label}>
+                                        <Field
+                                            name="labels"
+                                            type="checkbox"
+                                           
+                                            value={label}
+                                             />
+
+                                        {label}</label>
+
+                                ))}
+                            </fieldset>
+                            <button className="btn" type="submit">Save</button>
+                        </Form>
+                    )}
+                </Formik>
             </section>
         </>
     )
