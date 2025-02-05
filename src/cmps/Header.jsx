@@ -19,6 +19,7 @@ export function Header(){
             <li className={(page==='/')? 'active':''}><NavLink to='/'>Home</NavLink></li>
             <li className={(page==='/toys')? 'active':''}><NavLink to='/toys'>toys</NavLink></li>
             <li className={(page==='/dashboard')? 'active':''}><NavLink to='/dashboard'>dashboard</NavLink></li>
+            <li className={(page==='/about')? 'active':''}><NavLink to='/about'>about</NavLink></li>
         </ul>
         </nav>
         </div>

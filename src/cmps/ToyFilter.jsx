@@ -1,7 +1,13 @@
 import { useEffect, useRef, useState } from "react"
 import { utilService } from "../services/util.service.js"
 import { toyService } from "../services/toys.service.js"
-
+import * as React from 'react';
+import { useTheme } from '@mui/material/styles';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 const toyLabels = toyService.getToyLabels()
 export function ToyFilter({ filterBy, onSetFilter }) {
@@ -14,7 +20,7 @@ export function ToyFilter({ filterBy, onSetFilter }) {
     }, [filterByToEdit])
     function handleChange({ target }) {
         let { value, name: field, type } = target
-   
+     
         switch (type) {
             case 'number':
                 value = +value
@@ -23,8 +29,8 @@ export function ToyFilter({ filterBy, onSetFilter }) {
         }
         setFilterByToEdit((prevFilter) => ({ ...prevFilter, [field]: value }))
     }
-    
-    const {labels} = filterByToEdit
+
+    const { labels } = filterByToEdit
     return (
         <>
             <section className="toy-filter">
@@ -43,21 +49,35 @@ export function ToyFilter({ filterBy, onSetFilter }) {
                         </select>
                     </div>
 
-                    <select
+                    <Select
+                        sx={{ m: 1, width: 300, bgcolor: 'white' }}
+                        labelId="demo-multiple-name-label"
+                        id="demo-multiple-name"
                         multiple
-                        name="labels"
                         value={labels || []}
                         onChange={handleChange}
+                        input={<OutlinedInput label="Name" />}
+                        name="labels"
+                        displayEmpty
+                        renderValue={(selected) => {
+                            console.log(selected)
+                            if (!selected|| selected.length === 0) {
+                              return <em>enter labels</em>;
+                            }
+                
+                            return selected.join(', ');
+                          }}
                     >
-                        <option value="">Labels</option>
-                        <>
-                            {toyLabels.map(label => (
-                                <option key={label} value={label}>
-                                    {label}
-                                </option>
-                            ))}
-                        </>
-                    </select>
+                        
+
+                        {toyLabels.map((label) => (
+                            <MenuItem key={label} value={label}>
+                                {label}
+                            </MenuItem>
+                        ))}
+                    </Select>
+
+
                     <div>
                         <label htmlFor="sortBy">sortBy</label>
                         <select onChange={handleChange} name="sortBy" id="sortBy">

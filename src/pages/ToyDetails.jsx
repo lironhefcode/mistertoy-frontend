@@ -3,7 +3,7 @@ import { useParams } from "react-router"
 import { toyService } from "../services/toys.service.js"
 import { useEffect } from "react"
 import { Popup } from "../cmps/Popup.jsx"
-import { Chat } from "../cmps/chat.jsx"
+import { Chat } from "../cmps/Chat.jsx"
 import { ToyImg } from "../cmps/ToyImg.jsx"
 import chatImg from '../assets/style/imgs/chat.png'
 

@@ -12,6 +12,7 @@ import { ToyDetails } from './pages/ToyDetails.jsx'
 import { ToyEdit } from './pages/ToyEdit.jsx'
 import { UserMsg } from './cmps/UserMsg.jsx'
 import { Dashborad } from './pages/Dashboard.jsx'
+import { About } from './pages/About.jsx'
 function App() {
 
 
@@ -29,6 +30,7 @@ function App() {
               <Route path='/toys/edit/:toyId?' element={<ToyEdit/>}></Route>
               <Route path='/toys/edit' element={<ToyEdit/>}></Route>
               <Route path='/dashboard' element={<Dashborad/>}></Route>
+              <Route path='/about' element={<About/>}></Route>
             </Routes>
           </div>
         </section>
