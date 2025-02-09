@@ -27,10 +27,15 @@ export function ToyEdit() {
         if (toyId) loadToy()
     }, [])
 
-    function loadToy() {
-        toyService.getById(toyId)
-            .then(toy => settoyToEdit(toy))
-            .catch(err => console.log('Had issues in toy details', err))
+    async function loadToy() {
+        try {
+            const toy = await toyService.getById(toyId)
+            settoyToEdit(toy)
+        } catch (err) {
+            console.log('Had issues in toy details', err)
+        }
+
+
     }
     function handleChange({ target }) {
         let { value, type, name: field } = target
@@ -59,13 +64,12 @@ export function ToyEdit() {
         });
     }
 
-    function onSaveToy(values) {
-        
-        saveToy(values).then(() => {
+   async function onSaveToy(values) {
+
+       await saveToy(values)
             showSuccessMsg('saved toy succsefuly')
             navigate('/toys')
-        }
-        )
+        
     }
     console.log(toyToEdit)
     return (
@@ -74,10 +78,10 @@ export function ToyEdit() {
                 <h2 className="title">Toy edit</h2>
                 <Formik enableReinitialize={true} initialValues={{ ...toyToEdit }} validationSchema={EditSchema} onSubmit={values => onSaveToy(values)}>
                     {({ errors, touched, setFieldValue, values }) => (
-                       
+
                         <Form>
                             <div>
-                               
+
                                 <label htmlFor="name">name:</label>
                                 <Field className="name" type="text" name="name" id="name" />
                                 {errors.name && touched.name ? (
@@ -102,13 +106,13 @@ export function ToyEdit() {
                                 {labels.map(label => (
 
 
-                                    <label className="edit-tag"  key={label}>
+                                    <label className="edit-tag" key={label}>
                                         <Field
                                             name="labels"
                                             type="checkbox"
-                                           
+
                                             value={label}
-                                             />
+                                        />
 
                                         {label}</label>
 

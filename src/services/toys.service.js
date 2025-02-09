@@ -25,19 +25,23 @@ export const toyService = {
     getToyLabels,
     getToysData,
     getStockData,
-    getAll
+    getAll,
+    addMsg
 }
 
-function query(filterBy = {}) {
-    return httpService.get(BASE_URL, filterBy)
+async function query(filterBy = {}) {
+    const test =  await httpService.get(BASE_URL, filterBy)
+ 
+    return test
 
 }
 function getAll(){
     return httpService.get(BASE_URL + 'all')
 }
 
-function getById(toyId) {
-    return httpService.get(BASE_URL+toyId)
+async function getById(toyId) {
+    const toy = await httpService.get(BASE_URL+toyId)
+    return toy
 }
 
 function remove(toyId) {
@@ -55,7 +59,11 @@ function save(toy) {
         return httpService.post(BASE_URL, toy)
     }
 }
-
+async function addMsg(toyId,msg){
+  
+    const txt = {txt:msg}
+    return  await httpService.post(BASE_URL+toyId+'/msg',txt)
+}
 function getEmptyToy() {
     return {
         name: '',
@@ -103,7 +111,4 @@ function getStockData(toys){
         
                     return acc
             },{})
-
-          
-
 }

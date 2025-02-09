@@ -22,21 +22,24 @@ export function ToyesIndex() {
         setFilterBy(filterBy)
     }
 
-    function onRemoveToy(toyId) {
-        removeToy(toyId)
-            .then(() => {loadToys()
-                showSuccessMsg('removed toy succesfully')
-            })
-            .catch(err => {
-                showErrorMsg('cant remove toy')
-                console.log(err)})
+    async function onRemoveToy(toyId) {
+        try {
+
+            await removeToy(toyId)
+            loadToys()
+            showSuccessMsg('removed toy succesfully')
+
+        } catch (err) {
+            showErrorMsg('cant remove toy')
+            console.log(err)
+        }
     }
     function onChangePageIdx(diff) {
         let newPageIdx = +filterBy.pageIdx + diff
         if (newPageIdx < 0) newPageIdx = maxPage - 1
         if (newPageIdx >= maxPage) newPageIdx = 0
         onSetFilter({ pageIdx: newPageIdx })
-      }
+    }
     console.log(maxPage)
     return (
         <>
@@ -47,7 +50,7 @@ export function ToyesIndex() {
                 </button>
             </div>
             <ToyFilter filterBy={filterBy} onSetFilter={onSetFilter} />
-            <PaginationButtons pageIdx={filterBy.pageIdx} onChangePageIdx={onChangePageIdx}/>
+            <PaginationButtons pageIdx={filterBy.pageIdx} onChangePageIdx={onChangePageIdx} />
             <ToysList onRemoveToy={onRemoveToy} toys={toys} />
         </>
     )

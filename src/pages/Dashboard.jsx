@@ -8,10 +8,14 @@ import { DoughnutChart } from "../cmps/DoughnutChart.jsx";
 export function Dashborad(){
 
     const [toys,setToys] = useState()
-    useEffect(()=>{
-        toyService.getAll()
-                        .then(toys =>setToys(toys))
+    useEffect( ()=>{
+      
+                        getToys()
     },[])
+    async function getToys(){
+        const toys = await toyService.getAll()
+        setToys(toys)
+    }
     if(!toys) return <h1>loading</h1>
     return (
         <div style={{flexWrap:'wrap'}} className="dashborad flex">

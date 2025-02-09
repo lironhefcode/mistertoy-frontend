@@ -6,9 +6,11 @@ import { Popup } from "../cmps/Popup.jsx"
 import { Chat } from "../cmps/Chat.jsx"
 import { ToyImg } from "../cmps/ToyImg.jsx"
 import chatImg from '../assets/imgs/chat.png'
+import { useSelector } from "react-redux"
 
 
 export function ToyDetails() {
+    const user = useSelector(storeState => storeState.userMoudle.user)
     const [toy, setToy] = useState(null)
     const [popUp,setPopup] =  useState(false)
 
@@ -16,18 +18,28 @@ export function ToyDetails() {
     useEffect(() => {
         if (toyId) loadToy()
     }, [toyId])
-    function loadToy() {
-        toyService.getById(toyId)
-            .then(toy => setToy(toy))
-            .catch(err => console.log('Had issues in toy details', err))
+    async function loadToy() {
+        try{
+
+            const toy =   await toyService.getById(toyId)
+               setToy(toy)
+        }
+        catch(err){
+            console.log('Had issues in toy details', err)
+        }
+          
     }
     function onSetPopup(){
         setPopup(prevPopup => !prevPopup)
     }
-
+    async function addmsg(){
+        const msg = prompt('enter msg')
+         await toyService.addMsg(toyId,msg)
+         loadToy()
+    }
 
     if (!toy) return <div>Loading...</div>
-
+   
   const labelTxt = toy.labels.join(',')
     return (
         <section className="toy-details">
@@ -38,6 +50,8 @@ export function ToyDetails() {
             <p> <span>Price:</span>  ${toy.price.toLocaleString()}</p>
             <p><span> Instock:</span> {toy.inStock? 'yes':'no'}</p>
             <div> <span>labels:</span> {labelTxt}</div>
+            {user&&<button onClick={addmsg}>add msg</button>}
+            {toy.msgs&&toy.msgs.map((msg)=><div key={msg._id}>{msg.txt}</div>)}
             </div>
             </div>
           

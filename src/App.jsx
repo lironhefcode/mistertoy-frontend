@@ -12,6 +12,7 @@ import { Dashborad } from './pages/Dashboard.jsx'
 import { About } from './pages/About.jsx'
 import { UserMsg } from './cmps/UserMsg.jsx'
 
+import { Login } from './pages/login.jsx'
 import './App.css'
 
 import './assets/style/style/main.scss'
@@ -33,6 +34,7 @@ function App() {
               <Route path='/toys/edit' element={<ToyEdit/>}></Route>
               <Route path='/dashboard' element={<Dashborad/>}></Route>
               <Route path='/about' element={<About/>}></Route>
+              <Route path='/login' element={<Login/>}></Route>
             </Routes>
             </section>
         </section>
