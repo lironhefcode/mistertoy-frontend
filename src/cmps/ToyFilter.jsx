@@ -37,8 +37,8 @@ export function ToyFilter({ filterBy, onSetFilter }) {
                 <h2>Toy filter</h2>
                 <form action="">
                     <div>
-                        <label htmlFor="txt">byText:</label>
-                        <input type="text" onChange={handleChange} name="txt" id="txt" />
+                        
+                        <input type="text" placeholder="fillter by text" onChange={handleChange} name="txt" id="txt" />
                     </div>
                     <div>
                         <label htmlFor="inStock">stock Type</label>
@@ -48,7 +48,7 @@ export function ToyFilter({ filterBy, onSetFilter }) {
                             <option value="false">Out of stock</option>
                         </select>
                     </div>
-                    <FormControl  sx={{ m: 2, width: 300, bgcolor: 'white' }}>
+                    <FormControl  className="input">
                     <InputLabel color="black" id="demo-multiple-name-label">labels</InputLabel>
                     <Select
                        

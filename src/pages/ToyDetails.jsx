@@ -5,7 +5,7 @@ import { useEffect } from "react"
 import { Popup } from "../cmps/Popup.jsx"
 import { Chat } from "../cmps/Chat.jsx"
 import { ToyImg } from "../cmps/ToyImg.jsx"
-import chatImg from '../assets/style/imgs/chat.png'
+import chatImg from '../assets/imgs/chat.png'
 
 
 export function ToyDetails() {

@@ -18,7 +18,8 @@ export function Header() {
     }, [location])
 
     return (
-        <div className="app-header">
+        <div className="app-header full main-layout">
+           <div className="header-content">
             <Logo />
             
                 <button className="menu-opner" ><MenuIcon onClick={() => toggleDrawer(true)}/></button>
@@ -32,7 +33,8 @@ export function Header() {
                         </ul>
                     </Box>
                 </Drawer>
-            
+                
+                </div>
         </div>
     )
 }

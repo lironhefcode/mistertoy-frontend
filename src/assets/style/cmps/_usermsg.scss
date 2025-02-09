@@ -9,6 +9,16 @@
     font-weight: 700;
     border-radius: 10px;
     padding: 0.2em 0.5em;
+    button {
+   
+      top: 2px;
+      right: 4px;
+     position: absolute;
+      background-color: inherit;
+      border-radius: 50%;
+      font-size: 1.2em;
+      border: 1px solid black;
+    }
   }
   
   .user-msg.success {
@@ -17,18 +27,9 @@
   }
   
   .user-msg.error {
-    background-color:red;
+    background-color: $main-clr-1;
     color: white;
   }
   
-  .user-msg button {
-   
-    top: 2px;
-    right: 4px;
-   position: absolute;
-    background-color: inherit;
-    border-radius: 50%;
-    font-size: 1.2em;
-    border: 1px solid black;
-  }
+  
   

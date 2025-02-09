@@ -1,6 +1,5 @@
 .about-btn-container{
-    display: flex;
-    justify-content: center;
+    @include disCenter(flex);
     gap: 10px;
     margin-top: 20px;
 }

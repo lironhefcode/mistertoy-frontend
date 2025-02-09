@@ -77,7 +77,7 @@ export function ToyEdit() {
                        
                         <Form>
                             <div>
-                                {console.log(values)}
+                               
                                 <label htmlFor="name">name:</label>
                                 <Field className="name" type="text" name="name" id="name" />
                                 {errors.name && touched.name ? (

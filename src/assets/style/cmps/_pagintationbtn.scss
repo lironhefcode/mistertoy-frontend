@@ -1,0 +1,10 @@
+.pagination{
+   @include disCenter(flex);
+    margin: 10px 0;
+    button{
+       margin: 0;
+   }
+   span{
+      margin-inline:10px;
+  }
+}

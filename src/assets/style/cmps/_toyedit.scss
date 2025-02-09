@@ -1,0 +1,67 @@
+.toy-edit{
+    display: grid;
+    height: auto;
+    box-shadow: 0px 10px 16px hsl(0, 0%, 90%);
+    padding: 10px;
+    justify-content: center;
+    width: 80%;
+    justify-self: center;
+    margin-top: 10px;
+    form{
+       @include disCenter(flex);
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+        label{
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        .price,.name{
+            height: 4em;
+            min-width: 150px;
+            max-width: 20vw;
+            padding-left: 5px;
+            font-size: 1em;
+            margin-left: 5px;
+        }
+
+        .labels-container{
+            width: 20vw;
+            display: grid;
+           
+            padding: 0;
+            gap: 5px;
+            
+
+            input[type="checkbox"]{
+                width: 0;
+                    padding: 0;
+                    margin: 0;
+            }
+
+            label:has([type="checkbox"]:checked).edit-tag{
+
+                background-color:  $main-clr-1;
+                color: white;
+            }
+            .edit-tag{
+                margin-inline: 5px;
+                padding-inline: 5px;
+               text-align: center;
+             
+             }
+        }
+        
+    }
+    
+}
+ 
+
+
+
+
+
+
+
+
+

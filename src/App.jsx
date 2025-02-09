@@ -1,18 +1,20 @@
 import { useState } from 'react'
 
-import './App.css'
 import { Route, BrowserRouter as Router, Routes } from 'react-router'
 import { Home } from './pages/Home.jsx'
 import { ToyesIndex } from './pages/Toyesindex.jsx'
 import { Header } from './cmps/Header.jsx'
-import './assets/style/main.css'
 import { Provider } from 'react-redux'
 import { store } from './store/store.js'
 import { ToyDetails } from './pages/ToyDetails.jsx'
 import { ToyEdit } from './pages/ToyEdit.jsx'
-import { UserMsg } from './cmps/UserMsg.jsx'
 import { Dashborad } from './pages/Dashboard.jsx'
 import { About } from './pages/About.jsx'
+import { UserMsg } from './cmps/UserMsg.jsx'
+
+import './App.css'
+
+import './assets/style/style/main.scss'
 function App() {
 
 
@@ -20,9 +22,9 @@ function App() {
     <>
     <Provider store={store}>
       <Router>
-        <section className='app'>
+        <section className='main-layout'>
           <Header />
-          <div className='main-layout'>
+            <section>
             <Routes>
               <Route element={<Home />} path='/'></Route>
               <Route path='/toys' element={<ToyesIndex />}></Route>
@@ -32,7 +34,7 @@ function App() {
               <Route path='/dashboard' element={<Dashborad/>}></Route>
               <Route path='/about' element={<About/>}></Route>
             </Routes>
-          </div>
+            </section>
         </section>
       </Router>
       <UserMsg/>
